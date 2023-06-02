@@ -58,14 +58,14 @@ def obtener_votos():
     # Conectarse a la base de datos
     conexion = mysql.connector.connect(
         host='localhost',
-        user='Alcornoque',
-        password='alcornoque123',
+        user='JuanManuel',
+        password='Contraseña1234',
         database='votacion'
     )
     cursor = conexion.cursor()
 
     # Obtener los votos de la tabla
-    cursor.execute("SELECT * FROM votos")
+    cursor.execute("SELECT opcion, COUNT(*) as cantidad FROM votos GROUP BY opcion;")
     votos = cursor.fetchall()
 
     # Cerrar la conexión
