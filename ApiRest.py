@@ -1,8 +1,12 @@
 from flask import Flask, request, jsonify
 import sqlite3
 import mysql.connector
+from flask import Flask
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app, origins='http://localhost:4200')
 
 @app.route('/votos', methods=['POST'])
 def recibir_votos():
@@ -29,8 +33,8 @@ def persistir_voto(datos_voto):
     # Conectarse a la base de datos
     conexion = mysql.connector.connect(
         host='localhost',
-        user='JuanManuel',
-        password='Contraseña1234',
+        user='Alcornoque',
+        password='alcornoque123',
         database='votacion'
     )
     cursor = conexion.cursor()
@@ -54,8 +58,8 @@ def obtener_votos():
     # Conectarse a la base de datos
     conexion = mysql.connector.connect(
         host='localhost',
-        user='JuanManuel',
-        password='Contraseña1234',
+        user='Alcornoque',
+        password='alcornoque123',
         database='votacion'
     )
     cursor = conexion.cursor()
