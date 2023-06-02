@@ -18,7 +18,7 @@ def recibir_votos():
 
     # Envía una respuesta al votante para confirmar la recepción del voto
     respuesta = {'mensaje': '¡Tu voto ha sido registrado correctamente!'}
-    return jsonify(respuesta), 200
+    return json.dumps(respuesta), 200
 
 @app.route('/votos', methods=['GET'])
 def mostrar_votos():
@@ -26,15 +26,18 @@ def mostrar_votos():
     votos = obtener_votos()
 
     # Envía una respuesta con los votos obtenidos
-    respuesta = {'votos': votos}
+    respuesta = []
+    for opcion, cantidad in votos:
+        voto = {'opcion': opcion, 'cantidad': cantidad}
+        respuesta.append(voto)
     return jsonify(respuesta), 200
 
 def persistir_voto(datos_voto):
     # Conectarse a la base de datos
     conexion = mysql.connector.connect(
         host='localhost',
-        user='Alcornoque',
-        password='alcornoque123',
+        user='JuanManuel',
+        password='Contraseña1234',
         database='votacion'
     )
     cursor = conexion.cursor()
